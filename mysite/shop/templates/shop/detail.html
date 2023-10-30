@@ -1,38 +1,61 @@
-{%extends 'shop/base.html'%}
-{%load static%}
-{%block content%}
- <table class="col">
+{% extends 'shop/base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-md-4">
                 <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="200%" height="0px" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: " preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-            <img src="{{item.photo_path.url}}"  height="20%" width="20%"
-                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <img src="{{ item.photo_path.url }}" class="img-fluid" alt="{{ item.name }}">
+                        </div>
+                        <div class="col-12 mt-3">
+                            <img src="{{ item.photo_path1.url }}" class="img-fluid" alt="{{ item.name }}">
+                        </div>
+                        <div class="col-12 mt-3">
+                            <img src="{{ item.photo_path2.url }}" class="img-fluid" alt="{{ item.name }}">
+                        </div>
+                        <div class="col-12 mt-3">
+                            <img src="{{ item.photo_path3.url }}" class="img-fluid" alt="{{ item.name }}">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-8">
                 <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="200%" height="0px" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: " preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-            <img src="{{item.photo_path1.url}}"  height="20%" width="20%"
-                <div class="card-body">
-                <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="200%" height="0px" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: " preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-            <img src="{{item.photo_path2.url}}"  height="20%" width="20%"
-            <div class="card-body">
-                <div class="card shadow-sm">
-            <svg class="bd-placeholder-img card-img-top" width="200%" height="0px" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: " preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-            <img src="{{item.photo_path3.url}}"  height="20%" width="20%"
-                <div class="card-body">
-             <div class="btn-group">
-              <p class="card-text">{{item.name}}</p>
-                <p class="card-text">{{item.description1}}</p>
-                <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                    <form action="{%url 'cart:cart_add' item.id%}" method="post">
+                    <img src="{{ item.photo_path.url }}" class="card-img-top" alt="{{ item.name }}">
+                    <div class="card-body">
+
+
+                        <p class="card-text">{{ item.name }}</p>
+                        <p class="card-text">{{ item.description1 }}</p>
+                        <div class="btn-group">
+                                    <form action="{% url 'cart:cart_add' item.id %}" method="post">
                         {{cart_product_form}}
                         {%csrf_token%}
-                        <input type="submit" class="btn btn-sm btn-outline-secondary" value= "Добавить в корзину">
-                    </form>
-                </div>
-                <small class="text-body-secondary">Цена: {{item.price }} </small>
-              </div>
-            </div>
-          </div>
-        </div>
+                         <input type="submit" value="Add to Cart">
+                            </form>
+                        </div>
+                        <small class="text-body-secondary">Price: {{ item.price }}</small>
+                    </div>
+                   <div class="alert alert-dismissible alert-secondary">
+  <strong>ВОЗВРАТ</strong> Бесплатный возврат в магазине
+                       Вы можете вернуть товар в любом магазине Massimo Dutti на том же рынке, где приобрели его.
+                       Возврат товара в Massimo Dutti всегда производится бесплатно. Срок возврата — 30 дней со дня подтверждения отправки.
+                       Бесплатный возврат по домашнему адресуВы можете запросить бесплатный возврат по домашнему адресу в разделе «мой аккаунт».
+                       Возврат товара в Massimo Dutti всегда производится бесплатно. Срок возврата — 30 дней со дня подтверждения отправки. Возврат в пункте выдачи
+                       Вы можете вернуть товар в любом из наших пунктов выдачи. Посмотрите список при оформлении возврата (раздел «Мой аккаунт»,
+                       подраздел «Возвраты»). Вернуть товар нужно в течение 30 дней с момента покупки.
+                        Обратите внимание, что персонализированные изделия возврату и обмену не подлежат.
 
-{%endblock%}
+</a>.
+</div>
+                </div>
+
+
+</div>
+        </div>
+    </div>
+{% endblock %}
