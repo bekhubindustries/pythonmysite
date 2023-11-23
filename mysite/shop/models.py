@@ -33,6 +33,10 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
-    # class Meta:
-    # verbose_name='Категория'
-    # verbose_name='Категория'
+
+# class Order(models.Model):
+#     name = models.CharField(verbose_name='Название товара', max_length=60)
+#     price = models.IntegerField(verbose_name='Цена')
+#     customer = models.ForeignKey('Customer', on_delete=models.CASCADE)
+#     order_date = models.DateTimeField(auto_now_add=True)
+#     quantity = models.PositiveIntegerField()

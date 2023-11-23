@@ -6,7 +6,7 @@ from django.views.decorators.http import require_POST
 from cloudipsp import Api, Checkout
 
 
-def buy(request):
+def cart_buy(request):
     cart = Cart(request)
     total = int(cart.get_total_price())
     api = Api(merchant_id=1396424,

@@ -3,6 +3,9 @@
 
 {% block content %}
 
+
+    <div class="container">
+
 <h1>ИСТОРИЯ БРЕНДА</h1>
 
 <h3>
@@ -17,5 +20,39 @@
 
 Начиная с сентября 2006 года Massimo Dutti разрабатывает и реализует товары следующих линий. Женская одежда: женская одежда, аксессуары, парфюмерия. Мужская одежда: мужская одежда, аксессуары, Personal Tailoring, парфюмерия.</small>
 </h3>
+</div>
+
+<div class="container">
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Massimo dutti</title>
+    <h4>Магазины в городе Алматы</h4>
+
+
+
+
+    <script src="https://maps.api.2gis.ru/2.0/loader.js?pkg=full"></script>
+    <script type="text/javascript">
+        var map;
+
+        DG.then(function () {
+        var map = DG.map('map', {
+                center: [43.231263, 76.924703], // Здесь установите свои координаты (широту и долготу)
+                zoom: 12
+            });
+                DG.marker([43.202509, 76.892052]).addTo(map).bindPopup('Massimo Dutti 1 этаж ');
+                DG.marker([43.233445, 76.956307]).addTo(map).bindPopup('Massimo Dutti 2 этаж');
+                      });
+    </script>
+<body>
+        <div id="map" style="width: 100%; height: 400px;"></div>
+
+    </body>
+</html>
+
+
+
 
 {% endblock %}

@@ -3,6 +3,7 @@ from django.conf import settings
 from shop.models import Shop
 
 
+
 class Cart(object):
     def __init__(self, request):
         # Иниццализация корзины
