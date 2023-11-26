@@ -4,6 +4,7 @@ from .forms import CartAddProductForm
 from shop.models import Shop
 from django.views.decorators.http import require_POST
 from cloudipsp import Api, Checkout
+from django.http import HttpResponseBadRequest
 
 
 def cart_buy(request):
@@ -21,18 +22,22 @@ def cart_buy(request):
 
 
 @require_POST
+
 def cart_add(request, product_id):
     cart = Cart(request)
     product = get_object_or_404(Shop, id=product_id)
     form = CartAddProductForm(request.POST)
-    print(form['quantity'])
     if form.is_valid():
         cd = form.cleaned_data
-        cart.add(product=product, quantity=cd['quantity'], update_quantity=cd['update'])
+        try:
+            cart.add(product=product, quantity=cd['quantity'], update_quantity=cd['update'])
+            return redirect('cart:cart_detail')
+        except Exception as e:
+            print(f"Error adding product to cart: {e}")
+            return HttpResponseBadRequest("Error adding product to cart")
     else:
         print(form.errors)
-    return redirect('cart:cart_detail')
-
+        return HttpResponseBadRequest("Invalid form data")
 
 def cart_remove(request, product_id):
     cart = Cart(request)

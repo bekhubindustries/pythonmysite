@@ -11,7 +11,7 @@
 
 
         <th> <button type="button" class="btn btn-primary btn-sm">Картинка</button></th>
-        <th> <button type="button" class="btn btn-primary btn-sm">тоовар</button></th>
+        <th> <button type="button" class="btn btn-primary btn-sm">товар</button></th>
         <th> <button type="button" class="btn btn-primary btn-sm">Обновить </button></th>
         <th> <button type="button" class="btn btn-primary btn-sm">Удалить</button></th>
         <th> <button type="button" class="btn btn-primary btn-sm">Кол-во</button></th>
@@ -34,10 +34,10 @@
                 {{product.name}}
             </td>
             <td>
-                <form action="{% url 'cart:cart_add' product.id %}" method="post">
+                <form action= "{% url 'cart:cart_add' product.id %}" method="post"  >
                     {{item.update_quantity_form.quantity}}
                     {{item.update_quantity_form.update}}
-                    <input type="submit" value="Обновить">
+                    <input type="submit"  class="btn btn-sm btn-outline-secondary" value="Обновить">
                     {% csrf_token %}
                 </form>
             </td>
@@ -66,7 +66,7 @@
 </table>
 
 <p class="text-right">
-    <a href="{% url 'shop:index' %}"><button type="button" class="btn btn-primary">Продолжить покупки</button></a>
+    <a href="{% url 'shop:index' %}"><button type="button" class="btn btn-primary">Продолжить покупки</button>
     <a href="{% url 'cart:cart_buy' %}"><button type="button" class="btn btn-primary">Оформить заказ</button></a>
 
 </p>

@@ -3,7 +3,6 @@ from django.conf import settings
 from shop.models import Shop
 
 
-
 class Cart(object):
     def __init__(self, request):
         # Иниццализация корзины
@@ -11,7 +10,7 @@ class Cart(object):
         cart = self.session.get(settings.CART_SESSION_ID)
         if not cart:
             # Сохраняем пустую корзину если не было предыдущей сессии
-            cart = self.session[settings.CART_SESSION_ID] ={}
+            cart = self.session[settings.CART_SESSION_ID] = {}
         self.cart = cart
 
     def __iter__(self):
@@ -46,7 +45,6 @@ class Cart(object):
         product_id = str(product.id)
 
         if product_id not in self.cart:
-
             self.cart[product_id] = {'quantity': 0, 'price': str(product.price)}
         if update_quantity:
             self.cart[product_id]['quantity'] = quantity
@@ -64,6 +62,3 @@ class Cart(object):
     def get_total_price(self):
         # Получаем общую сумму
         return sum(Decimal(item['price']) * item['quantity'] for item in self.cart.values())
-
-
-
